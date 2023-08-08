@@ -1,7 +1,7 @@
 // 北为正值,南为负值; 东为正值,西为负值
 window.config = {
   莫问今朝: {
-    updated_at: '8月8日 14:39',
+    updated_at: '8月8日',
     resource: [
       {
         point: [-764, -484], // 西764, 南484
@@ -47,7 +47,7 @@ window.config = {
     ],
   },
   血战: {
-    updated_at: '8月8日 15:50',
+    updated_at: '8月8日',
     resource: [
       {
         point: [1133, -258], // 东1133, 南258
