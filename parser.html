@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>自然语言格式化</title>
+  <style>
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .root {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .root div {
+      flex: 1;
+      height: 100%;
+      padding: 30px;
+    }
+
+    .root div textarea {
+      width: 100%;
+      height: 100%;
+      resize: none;
+      margin: 0;
+      padding: 20px;
+    }
+
+    #convert {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate3d(-50%, -50%, 0);
+      font-size: 15px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="root">
+    <div><textarea id="input"></textarea></div>
+    <div><textarea id="output" readonly></textarea></div>
+    <button id="convert">转换</button>
+  </div>
+</body>
+<script>
+  var typeDefinition = {
+    箱: 'treasure',
+    箱子: 'treasure',
+    猪: 'pig',
+    豆: 'bean',
+    豆子: 'bean',
+    盐: 'salt',
+  };
+
+  // 将 '西764,南484' 转换为 [-764, -484]
+  function parseCoordinates(input) {
+    const parts = input.split(',');
+    const xPart = parts[0].trim();
+    const yPart = parts[1].trim();
+
+    let x = parseInt(xPart.slice(1)); // 去除方位字符并转换为整数
+    if (xPart.startsWith('西')) {
+      x = -x; // 西为负数
+    }
+
+    let y = parseInt(yPart.slice(1)); // 去除方位字符并转换为整数
+    if (yPart.startsWith('南')) {
+      y = -y; // 南为负数
+    }
+
+    return [x, y];
+  }
+
+  // 将 '1  西764,南484  营地内' 中间的空格合并为1个，并且按空格拆分为数组
+  function splitLine(line) {
+    var result = line.replace(/\s+/g, ' ').split(' ');
+    var type = typeDefinition[result[0]];
+    if (!type) {
+      alert('未知类型：' + result[0]);
+      throw new Error('未知类型：' + result[0]);
+    }
+    var point = parseCoordinates(result[1]);
+    var tooltip = result[2] || '';
+    return { point, type, tooltip };
+  }
+
+  function parseText(text) {
+    const result = [];
+    const lines = text.split('\n');
+    lines.forEach((line) => {
+      if (line) {
+        result.push(splitLine(line));
+      }
+    });
+    return result;
+  }
+</script>
+<script>
+  document.querySelector('#convert').addEventListener('click', function () {
+    // 获取input输出的内容
+    const input = document.querySelector('#input').value;
+    // 调用parseText函数，将input转换为数组
+    const output = parseText(input);
+    // 将数组转换为字符串
+    const outputText = JSON.stringify(output, null, 2);
+    // 将字符串输出到output
+    document.querySelector('#output').value = outputText;
+  });
+</script>
+
+</html>
