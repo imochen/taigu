@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>tiles</title>
+  <title>太古铜门资源标点</title>
   <meta charset="utf-8">
   <meta http-equiv="imagetoolbar" content="no" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -43,17 +43,41 @@
 
   <style>
     .tooltip {
-      background-color: rgba(255, 255, 255, 0.5);
+      background-color: #fff;
       color: black;
       font-size: 12px;
       padding: 8px 12px;
       border-radius: 4px;
       display: none;
     }
+
+    .tooltip::after {
+      content: "";
+      width: 10px;
+      height: 10px;
+      transform: rotate(45deg) translate3d(-50%, 0, 0);
+      background-color: #fff;
+      position: absolute;
+      left: 50%;
+      bottom: -8px;
+    }
+
+    .notice {
+      position: absolute;
+      left: 50%;
+      top: 20px;
+      transform: translate3d(-50%, 0, 0);
+      padding: 5px 14px;
+      border-radius: 50px;
+      font-size: 13px;
+      background-color: yellow;
+      z-index: 99;
+    }
   </style>
 </head>
 
 <body>
+  <div class="notice">莫问今朝 08月08日 已更新</div>
   <div id="map"></div>
   <script type="text/javascript">
     var mapExtent = [-4096.00000000, -4096.00000000, 4096.00000000, 4096.00000000];
@@ -155,7 +179,7 @@
         geometry: new ol.geom.Point(coordinate),
       });
 
-      var defaultScale = 0.4;
+      var defaultScale = 0.5;
       var iconStyle = new ol.style.Style({
         image: new ol.style.Icon({
           src: icons[icon], // 图片路径
@@ -176,7 +200,7 @@
       var tooltipOverlay = new ol.Overlay({
         element: tooltip, // HTML元素作为内容
         positioning: 'bottom-center', // 位置设置为底部中心
-        offset: [0, -20], // 偏移量
+        offset: [0, -30], // 偏移量
         stopEvent: false, // 允许事件继续传播
       });
 
@@ -222,8 +246,8 @@
       map.getView().on('change:resolution', function () {
         var zoom = map.getView().getZoom();
         var scale = defaultScale * zoom;
-        if (scale < 0.4) {
-          scale = 0.4
+        if (scale < 0.5) {
+          scale = 0.5
         }
         if (scale > 0.7) {
           scale = 0.7
