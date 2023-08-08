@@ -62,22 +62,169 @@
       bottom: -8px;
     }
 
+    .server {
+      position: absolute;
+      left: 20px;
+      top: 20px;
+      border-radius: 4px;
+      padding: 3px;
+      font-size: 13px;
+      z-index: 999;
+      display: flex;
+      background-color: rgba(255, 255, 255, .4);
+    }
+
+    .server a {
+      display: block;
+      margin-right: 2px;
+      width: 72px;
+      text-align: center;
+      padding: 4px 10px;
+      text-decoration: none;
+      color: #fff;
+      background-color: rgba(0, 60, 136, 1);
+    }
+
+    .server a:first-child {
+      border-radius: 4px 0 0 4px;
+    }
+
+    .server a:last-child {
+      border-radius: 0 4px 4px 0;
+      margin-right: 0;
+    }
+
+    .server a.active {
+      color: #000;
+      background-color: yellow;
+    }
+
+    .point {
+      position: absolute;
+      cursor: pointer;
+      right: 20px;
+      top: 20px;
+      z-index: 99;
+      background-color: rgba(255, 255, 255, .4);
+      border-radius: 4px;
+      padding: 3px;
+    }
+
+    .point span {
+      width: 120px;
+      display: block;
+      color: #fff;
+      text-decoration: none;
+      font-size: 13px;
+      text-align: center;
+      background-color: rgba(0, 60, 136, 1);
+      border: none;
+      padding: 4px 10px;
+    }
+
     .notice {
+      position: absolute;
+      left: 20px;
+      top: 60px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50px;
+      font-size: 13px;
+      z-index: 999;
+      color: #fff;
+      text-shadow: 0 0 2px #000;
+    }
+
+    .notice b {
+      padding-right: 10px;
+      color: bisque;
+    }
+
+    .btns {
+      position: absolute;
+      top: 20px;
+      right: 175px;
+      z-index: 99;
+
+      display: flex;
+    }
+
+    .btns .btn {
+      background-color: rgba(255, 255, 255, .4);
+      border-radius: 4px;
+      padding: 3px;
+      margin-right: 10px;
+    }
+
+    .btns .btn:last-child {
+      margin-right: 0;
+    }
+
+    .btns .btn a {
+      display: block;
+      color: #fff;
+      text-decoration: none;
+      font-size: 13px;
+      text-align: center;
+      background-color: rgba(0, 60, 136, 1);
+      border: none;
+      padding: 4px 10px;
+      position: relative;
+    }
+
+    .btns .btn a .qrcode {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 200px;
+      display: none;
+      padding: 20px;
+    }
+
+    .btns .btn a .qrcode::after {
+      content: "";
+      width: 20px;
+      height: 20px;
       position: absolute;
       left: 50%;
       top: 20px;
-      transform: translate3d(-50%, 0, 0);
-      padding: 5px 14px;
-      border-radius: 50px;
-      font-size: 13px;
+      background-color: #fff;
+      transform: rotate(45deg) translate3d(-50%, 0, 0);
+    }
+
+    .btns .btn a .qrcode img {
+      background-color: #fff;
+      padding: 15px;
+      width: 170px;
+    }
+
+    .btns .btn a:hover {
       background-color: yellow;
-      z-index: 99;
+      color: #000;
+    }
+
+    .btns .btn a:hover .qrcode {
+      display: block;
     }
   </style>
 </head>
 
 <body>
-  <div class="notice">莫问今朝 08月08日 已更新</div>
+  <div class="server"></div>
+  <div class="notice">这是跑马灯效果的文本内容。鼠标悬停停止滚动。</div>
+  <div class="btns">
+    <!-- <div class="btn"><a href="javascript:;">实力代肝</a></div> -->
+    <div class="btn">
+      <a href="javascript:;">意见反馈
+        <div class="qrcode"><img src='./assets/me.jpg'></div>
+      </a>
+    </div>
+  </div>
+  <div class="point"><span>西：-，北：-</span></div>
   <div id="map"></div>
   <script type="text/javascript">
     var mapExtent = [-4096.00000000, -4096.00000000, 4096.00000000, 4096.00000000];
@@ -88,12 +235,11 @@
     // Proj4js definition (verify code at http://epsg.io/3857);
     // proj4.defs('EPSG:3857', '+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs');
 
-    var margin = 3000; // 缩小的边界大小
     var newMapExtent = [
-      mapExtent[0] + 2800, // left
-      mapExtent[1] + 2300, // bottom
-      mapExtent[2] - 2800, // right
-      mapExtent[3] - 2800 // top
+      mapExtent[0] + 2300, // left
+      mapExtent[1] + 1800, // bottom
+      mapExtent[2] - 2300, // right
+      mapExtent[3] - 2300 // top
     ];
 
     var mapResolutions = [];
@@ -128,7 +274,8 @@
         maxResolution: mapTileGrid.getResolution(mapMinZoom),
         constrainOnlyCenter: true,
         minZoom: mapMinZoom,
-      })
+      }),
+      controls: [],
     });
     map.getView().fit(newMapExtent, map.getSize());
 
@@ -142,22 +289,17 @@
       // 在这里可以添加处理缩放级别变化的逻辑
     });
 
-    // 监听鼠标移动事件以获取当前坐标
-    // map.on('pointermove', function (event) {
-    //   var coordinate = event.coordinate; // 获取当前坐标
-    //   var x = Math.round(coordinate[0]);
-    //   var y = Math.round(coordinate[1]);
-    //   var xName = x > 0 ? '东' : '西';
-    //   var yName = y > 0 ? '北' : '南';
-    //   console.log(`当前坐标 ${xName}: ${Math.abs(x)}, ${yName}: ${Math.abs(y)}`);
-    // });
-
     function parsePoint(coordinate) {
       var xName = coordinate[0] > 0 ? '东' : '西';
       var yName = coordinate[1] > 0 ? '北' : '南';
-      return `${xName}: ${Math.abs(coordinate[0])}, ${yName}: ${Math.abs(coordinate[1])}`;
+      return `${xName}: ${Math.abs(Math.ceil(coordinate[0]))}, ${yName}: ${Math.abs(Math.ceil(coordinate[1]))}`;
     }
 
+    // 监听鼠标移动事件以获取当前坐标
+    map.on('pointermove', function (event) {
+      var coordinate = event.coordinate; // 获取当前坐标
+      document.querySelectorAll('.point span')[0].innerHTML = parsePoint(coordinate);
+    });
 
     var icons = {
       treasure: './assets/treasure.png',
@@ -254,22 +396,102 @@
         }
         iconStyle.getImage().setScale(scale);
       });
+
     }
 
-    addMarkerWithTooltip(map, [-764, -484], 'treasure', '营地内');
-    addMarkerWithTooltip(map, [-207, -1012], 'treasure', '树枝上');
-    addMarkerWithTooltip(map, [1913, -1328], 'treasure', '山头上');
-    addMarkerWithTooltip(map, [1121, 4], 'treasure', '半山腰');
+  </script>
+  <script>
+    const config = {
+      '莫问今朝': {
+        updated_at: '8月8日 14:39',
+        resource: [{
+          point: [-764, -484],
+          type: 'treasure',
+          tooltip: '营地内'
+        }, {
+          point: [-207, -1012],
+          type: 'treasure',
+          tooltip: '树枝上'
+        }, {
+          point: [1913, -1328],
+          type: 'treasure',
+          tooltip: '山头上'
+        }, {
+          point: [1121, 4],
+          type: 'treasure',
+          tooltip: '半山腰'
+        }, {
+          point: [877, -1611],
+          type: 'pig',
+        }, {
+          point: [988, -875],
+          type: 'pig',
+        }, {
+          point: [960, -480],
+          type: 'bean',
+        }, {
+          point: [1066, -484],
+          type: 'bean',
+        }, {
+          point: [859, -1836],
+          type: 'salt',
+          tooltip: '两个在一起'
+        }]
+      },
+      "血战": {
+        updated_at: '8月8日 15:50',
+        resource: [{
+          point: [1133, -258],
+          type: 'bean',
+        }, {
+          point: [887, -318],
+          type: 'bean',
+        }, {
+          point: [845, -1840],
+          type: 'salt',
+        }, {
+          point: [488, -1969],
+          type: 'salt',
+        }, {
+          point: [1103, -1375],
+          type: 'pig',
+        }, {
+          point: [1259, -624],
+          type: 'pig',
+        }, {
+          point: [1946, -708],
+          type: 'treasure',
+        }, {
+          point: [1913, -1329],
+          type: 'treasure',
+        }, {
+          point: [-1150, -1406],
+          type: 'treasure',
+        }, {
+          point: [-1612, -1512],
+          type: 'treasure',
+        }]
+      }
+    }
 
-    addMarkerWithTooltip(map, [877, -1611], 'pig', '');
-    addMarkerWithTooltip(map, [988, -875], 'pig', '');
+    Object.keys(config).forEach((name) => {
+      const server = document.createElement('a')
+      server.href = `?server=${name}`
+      server.id = name;
+      server.innerHTML = name
+      document.querySelectorAll('.server')[0].appendChild(server)
+    })
+  </script>
+  <script>
+    var url = new URL(window.location.href);
+    var server = url.searchParams.get('server') || '莫问今朝'
 
-    addMarkerWithTooltip(map, [960, -480], 'bean', '');
-    addMarkerWithTooltip(map, [1066, -484], 'bean', '');
+    document.querySelector(`#${server}`).classList.add('active')
+    document.querySelector('.notice').innerHTML = `当前服务器：<b>${server}</b> 更新时间：<b>${config[server].updated_at}</b>`
 
-    addMarkerWithTooltip(map, [859, -1836], 'salt', '两个在一起');
-
-
+    config[server].resource.forEach((item) => {
+      addMarkerWithTooltip(map, item.point, item.type, item.tooltip)
+    })
   </script>
   <script>
     var _hmt = _hmt || [];
