@@ -1,48 +1,37 @@
 // 北为正值,南为负值; 东为正值,西为负值
 window.config = {
   莫问今朝: {
-    updated_at: '8月8日',
+    updated_at: '8月9日',
     resource: [
       {
-        point: [-764, -484], // 西764, 南484
-        type: 'treasure',
-        tooltip: '营地内',
-      },
-      {
-        point: [207, -1012], // 东207, 南1012
-        type: 'treasure',
-        tooltip: '树枝上',
-      },
-      {
-        point: [1913, -1328], // 东1913, 南1328
-        type: 'treasure',
-        tooltip: '山头上',
-      },
-      {
-        point: [1121, 4], // 东1121, 北4
-        type: 'treasure',
-        tooltip: '半山腰',
-      },
-      {
-        point: [877, -1611], // 东877, 南1611
+        point: [1111, -1374],
         type: 'pig',
+        tooltip: '',
       },
       {
-        point: [988, -875], // 东988, 南875
+        point: [724, -1525],
         type: 'pig',
+        tooltip: '',
       },
       {
-        point: [960, -480], // 东960, 南480
-        type: 'bean',
-      },
-      {
-        point: [1066, -484], // 东1066, 南484
-        type: 'bean',
-      },
-      {
-        point: [859, -1836], // 东859, 南1836
+        point: [874, -1830],
         type: 'salt',
-        tooltip: '两个在一起',
+        tooltip: '',
+      },
+      {
+        point: [484, -1967],
+        type: 'salt',
+        tooltip: '',
+      },
+      {
+        point: [936, -540],
+        type: 'bean',
+        tooltip: '',
+      },
+      {
+        point: [1177, -465],
+        type: 'bean',
+        tooltip: '',
       },
     ],
   },
