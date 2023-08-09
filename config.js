@@ -47,47 +47,27 @@ window.config = {
     ],
   },
   血战: {
-    updated_at: '8月8日',
+    updated_at: '8月9日',
     resource: [
       {
-        point: [1133, -258], // 东1133, 南258
-        type: 'bean',
-      },
-      {
-        point: [887, -318], // 东887, 南318
-        type: 'bean',
-      },
-      {
-        point: [845, -1840], // 东845, 南1840
-        type: 'salt',
-      },
-      {
-        point: [488, -1969], // 东488, 南1969
-        type: 'salt',
-      },
-      {
-        point: [1103, -1375], // 东1103, 南1375
-        type: 'pig',
-      },
-      {
-        point: [1259, -624], // 东1259, 南624
-        type: 'pig',
-      },
-      {
-        point: [1946, -708], // 东1946, 南708
+        point: [-151, -810],
         type: 'treasure',
+        tooltip: '枯海西',
       },
       {
-        point: [1913, -1329], // 东1913, 南1329
+        point: [-1467, -1057],
         type: 'treasure',
+        tooltip: '绝雁关',
       },
       {
-        point: [-1150, -1406], // 西1150, 南1406
+        point: [1116, 11],
         type: 'treasure',
+        tooltip: '传送石东',
       },
       {
-        point: [-1612, -1512], // 西1612, 南1512
+        point: [473, -1283],
         type: 'treasure',
+        tooltip: '三岔口魈鬼东',
       },
     ],
   },
