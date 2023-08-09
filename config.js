@@ -33,6 +33,26 @@ window.config = {
         type: 'bean',
         tooltip: '',
       },
+      {
+        point: [-897, -1033],
+        type: 'treasure',
+        tooltip: '',
+      },
+      {
+        point: [-1341, -352],
+        type: 'treasure',
+        tooltip: '',
+      },
+      {
+        point: [1215, -1656],
+        type: 'treasure',
+        tooltip: '',
+      },
+      {
+        point: [1943, -707],
+        type: 'treasure',
+        tooltip: '',
+      },
     ],
   },
   血战: {

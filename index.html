@@ -86,11 +86,13 @@
     }
 
     .server a:first-child {
-      border-radius: 4px 0 0 4px;
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
     }
 
     .server a:last-child {
-      border-radius: 0 4px 4px 0;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
       margin-right: 0;
     }
 
@@ -213,12 +215,43 @@
     .btns .btn a:hover .qrcode {
       display: block;
     }
+
+
+    .refresh {
+      position: absolute;
+      right: 265px;
+      top: 20px;
+      border-radius: 4px;
+      padding: 3px;
+      font-size: 13px;
+      z-index: 99;
+      display: flex;
+      background-color: rgba(255, 255, 255, .4);
+    }
+
+    .refresh a {
+      display: block;
+      text-align: center;
+      padding: 4px 10px;
+      text-decoration: none;
+      color: #fff;
+      background-color: rgba(0, 60, 136, 1);
+      border-radius: 4px;
+    }
+
+    .refresh a:hover {
+      background-color: yellow;
+      color: #000;
+    }
   </style>
 </head>
 
 <body>
   <div class="server"></div>
   <div class="notice"></div>
+  <div class="refresh">
+    <a id="refresh" href="javascript:">强制刷新</a>
+  </div>
   <div class="btns">
     <!-- <div class="btn"><a href="javascript:;">实力代肝</a></div> -->
     <div class="btn">
@@ -229,6 +262,11 @@
   </div>
   <div class="point"><span>西：-，北：-</span></div>
   <div id="map"></div>
+  <script>
+    document.querySelector('#refresh').addEventListener('click', function () {
+      window.location.href = `./index.html?version=${new Date().getTime()}`
+    })
+  </script>
   <script>
     function loadAndReadScript(fn) {
       var js = document.querySelector('#config');
@@ -245,7 +283,6 @@
       document.body.appendChild(script);
     }
   </script>
-  <script src="./config.js"></script>
   <script type="text/javascript">
     var mapExtent = [-4096.00000000, -4096.00000000, 4096.00000000, 4096.00000000];
     var mapMinZoom = 3;
