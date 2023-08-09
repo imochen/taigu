@@ -52,7 +52,7 @@ window.config = {
       {
         point: [-151, -810],
         type: 'treasure',
-        tooltip: '枯海西',
+        tooltip: '枯海',
       },
       {
         point: [-1467, -1057],

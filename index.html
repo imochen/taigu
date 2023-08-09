@@ -229,6 +229,22 @@
   </div>
   <div class="point"><span>西：-，北：-</span></div>
   <div id="map"></div>
+  <script>
+    function loadAndReadScript(fn) {
+      var js = document.querySelector('#config');
+      if (js) {
+        fn();
+        return;
+      }
+      var script = document.createElement('script');
+      script.id = 'config';
+      script.src = './config.js?version=' + new Date().getTime(); // 添加随机参数以避免缓存
+      script.onload = function () {
+        fn();
+      };
+      document.body.appendChild(script);
+    }
+  </script>
   <script src="./config.js"></script>
   <script type="text/javascript">
     var mapExtent = [-4096.00000000, -4096.00000000, 4096.00000000, 4096.00000000];
@@ -405,23 +421,25 @@
 
   </script>
   <script>
-    Object.keys(config).forEach((name) => {
-      const server = document.createElement('a')
-      server.href = `?server=${name}`
-      server.id = name;
-      server.innerHTML = name
-      document.querySelectorAll('.server')[0].appendChild(server)
-    })
-  </script>
-  <script>
-    var url = new URL(window.location.href);
-    var server = url.searchParams.get('server') || '莫问今朝'
+    loadAndReadScript(function () {
+      Object.keys(config).forEach((name) => {
+        const server = document.createElement('a')
+        server.href = `?server=${name}`
+        server.id = name;
+        server.innerHTML = name
+        document.querySelectorAll('.server')[0].appendChild(server)
+      })
 
-    document.querySelector(`#${server}`).classList.add('active')
-    document.querySelector('.notice').innerHTML = `当前服务器：<b>${server}</b> 更新时间：<b>${config[server].updated_at}</b>`
 
-    config[server].resource.forEach((item) => {
-      addMarkerWithTooltip(map, item.point, item.type, item.tooltip)
+      var url = new URL(window.location.href);
+      var server = url.searchParams.get('server') || '莫问今朝'
+
+      document.querySelector(`#${server}`).classList.add('active')
+      document.querySelector('.notice').innerHTML = `当前服务器：<b>${server}</b> 更新时间：<b>${config[server].updated_at}</b>`
+
+      config[server].resource.forEach((item) => {
+        addMarkerWithTooltip(map, item.point, item.type, item.tooltip)
+      })
     })
   </script>
   <script>

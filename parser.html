@@ -69,7 +69,7 @@
 
   // 将 '西764,南484' 转换为 [-764, -484]
   function parseCoordinates(input) {
-    const parts = input.split(',');
+    const parts = input.split(/[,\，]/);
     const xPart = parts[0].trim();
     const yPart = parts[1].trim();
 
