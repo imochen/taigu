@@ -79,7 +79,7 @@ window.config = {
         tooltip: '赤渊右悬崖',
       },
       {
-        point: [523, -382],
+        point: [823, -382],
         type: 'bean',
         tooltip: '',
       },
