@@ -1,111 +1,111 @@
 // 北为正值,南为负值; 东为正值,西为负值
 window.config = {
   莫问今朝: {
-    updated_at: '8月10日',
+    updated_at: '8月11日',
     resource: [
       {
-        point: [1117, 7],
+        point: [1913, -1329],
         type: 'treasure',
-        tooltip: '红堡营地',
-      },
-      {
-        point: [1215, -1660],
-        type: 'treasure',
-        tooltip: '折戟之地',
-      },
-      {
-        point: [-425, -335],
-        type: 'treasure',
-        tooltip: '鬼哭岭',
-      },
-      {
-        point: [-375, 25],
-        type: 'treasure',
-        tooltip: '鬼哭岭',
-      },
-      {
-        point: [825, -381],
-        type: 'bean',
         tooltip: '',
       },
       {
-        point: [892, -319],
-        type: 'bean',
+        point: [1187, -510],
+        type: 'treasure',
         tooltip: '',
       },
       {
-        point: [1441, -519],
+        point: [340, -1540],
+        type: 'treasure',
+        tooltip: '',
+      },
+      {
+        point: [-1341, -352],
+        type: 'treasure',
+        tooltip: '',
+      },
+      {
+        point: [1059, -1461],
         type: 'pig',
         tooltip: '',
       },
       {
-        point: [852, 537],
+        point: [727, -1524],
         type: 'pig',
         tooltip: '',
       },
       {
-        point: [846, -1837],
+        point: [935, -538],
+        type: 'bean',
+        tooltip: '',
+      },
+      {
+        point: [893, -318],
+        type: 'bean',
+        tooltip: '',
+      },
+      {
+        point: [795, -2038],
         type: 'salt',
         tooltip: '',
       },
       {
-        point: [652, -1778],
+        point: [1014, -1633],
         type: 'salt',
         tooltip: '',
       },
     ],
   },
   血战: {
-    updated_at: '8月10日',
+    updated_at: '8月11日',
     resource: [
       {
-        point: [-1150, -1405],
+        point: [-1150, -1450],
         type: 'treasure',
-        tooltip: '城内高台',
+        tooltip: '',
       },
       {
-        point: [-425, -335],
+        point: [-155, -807],
         type: 'treasure',
-        tooltip: '鬼哭岭右下角坡底树旁',
+        tooltip: '',
       },
       {
-        point: [1215, -1660],
+        point: [1115, 10],
         type: 'treasure',
-        tooltip: '折戟之地正左',
+        tooltip: '',
       },
       {
-        point: [1465, -795],
+        point: [1767, -1882],
         type: 'treasure',
-        tooltip: '赤渊右悬崖',
+        tooltip: '',
       },
       {
-        point: [823, -382],
+        point: [825, -378],
         type: 'bean',
         tooltip: '',
       },
       {
-        point: [1141, -387],
+        point: [933, -536],
         type: 'bean',
         tooltip: '',
       },
       {
-        point: [1263, -625],
-        type: 'pig',
-        tooltip: '',
-      },
-      {
-        point: [852, 536],
-        type: 'pig',
-        tooltip: '',
-      },
-      {
-        point: [796, -2039],
+        point: [855, -1833],
         type: 'salt',
         tooltip: '',
       },
       {
-        point: [1034, -2101],
+        point: [1065, -2022],
         type: 'salt',
+        tooltip: '',
+      },
+      {
+        point: [1107, -1374],
+        type: 'pig',
+        tooltip: '',
+      },
+      {
+        point: [988, -877],
+        type: 'pig',
         tooltip: '',
       },
     ],
