@@ -38,7 +38,7 @@ window.config = {
   {
     "point": [
       1059,
-      -1041
+      -1460
     ],
     "type": "pig",
     "tooltip": ""
